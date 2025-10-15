@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="fragments/bootstrap :: bootstrap"></th:block>
+    <title>Pizza singola</title>
+
+</head>
+<body>
+    <header>
+        <div th:insert="fragments/navbar :: navbar"></div>
+    </header>
+    <main>
+
+        <div th:object="${pizza}" class="container">
+            <h1 class="my-4">Pizza: [[*{name}]]</h1>
+            <div class="card">
+                <img class="card-img-top" th:src="*{photo}" th:alt="*{name}" />
+                <div class="card-body">
+                    <h4 class="card-title">[[*{name}]]</h4>
+                    <p class="card-text">[[*{description}]]</p>
+                    <p class="card-text">[[|€ *{price}]]|</p>
+                </div>
+            </div>
+            
+    
+        </div>
+    </main>
+</body>
+</html>

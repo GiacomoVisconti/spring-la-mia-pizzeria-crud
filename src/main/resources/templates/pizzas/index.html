@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="fragments/bootstrap :: bootstrap"></th:block>
+    <title>Document</title>
+</head>
+<body>
+
+    <div th:insert="fragments/navbar :: navbar"></div>
+    <div class="container">
+
+        <h1 class="text-center my-4">PIZZE</h1>
+        <div class="row">
+            <div class="col-12">
+
+                <div class="mb-3" th:if="${list.size() > 0}">
+                    <div
+                        class="table-responsive"
+                    >
+                        <table
+                            class="table table-secondary text-center"
+                        >
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Controls</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="pizza : ${list}" th:object="${pizza}">
+                                    <td scope="row" th:text="*{name}"></td>
+                                    <td th:text="*{description}"></td>
+                                    <td th:text="|€ *{price}|"></td>
+                                    <td><a
+                                        name=""
+                                        id=""
+                                        class="btn btn-outline-primary"
+                                        th:href="@{|/pizzas/*{id}|}"
+                                        role="button"
+                                        >View</a
+                                    >
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+                <p th:text="...Non è presente nessun dato!" th:unless="${list.size() > 0}"></p>
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+</html>
